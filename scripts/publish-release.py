@@ -24,7 +24,7 @@ DEFAULT_OUTPUT_DIR = REPO_DIR / "dist" / "releases"
 DEFAULT_BUILD_SCRIPT = REPO_DIR / "scripts" / "build-extension.mjs"
 PACKAGE_ROOT = "qz-browser-agent-extension"
 # Keep equal to FIREFOX_GECKO_ID in scripts/firefox-manifest.mjs.
-FIREFOX_GECKO_ID = "qz-browser-agent@heleifz.github.io"
+FIREFOX_GECKO_ID = "qz-browser-agent@yongkaiwu.github.io"
 FIREFOX_PACKAGE_NAME = "qz-browser-agent-firefox"
 FIREFOX_KEPT_PERMISSIONS = ("webNavigation", "webRequest", "webRequestBlocking")
 FIREFOX_DATA_COLLECTION_REQUIRED = ("websiteContent", "browsingActivity")

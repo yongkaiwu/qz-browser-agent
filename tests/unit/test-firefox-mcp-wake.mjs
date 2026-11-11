@@ -93,7 +93,7 @@ test("the firefox host arms mcp wake without arming session automations", async 
       onAlarm: { addListener(fn) { listeners.push(fn); } },
     },
     runtime: {
-      id: "qz-browser-agent@heleifz.github.io",
+      id: "qz-browser-agent@yongkaiwu.github.io",
       getURL: path => `moz-extension://uuid/${path}`,
       getPlatformInfo() { return Promise.resolve({ os: "mac" }); },
     },

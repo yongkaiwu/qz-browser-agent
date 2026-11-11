@@ -67,7 +67,7 @@ test("the firefox boot does not arm session automations and chrome still does", 
       create(name, info) { created.push({ name, info }); return Promise.resolve(); },
       clear(name) { cleared.push(name); return Promise.resolve(true); },
     },
-    runtime: { id: "qz-browser-agent@heleifz.github.io", getURL: path => `moz-extension://uuid/${path}` },
+    runtime: { id: "qz-browser-agent@yongkaiwu.github.io", getURL: path => `moz-extension://uuid/${path}` },
   };
   installFirefoxHost(browser);
   assert.equal(browser.qzSessionAutomationsEnabled, false);

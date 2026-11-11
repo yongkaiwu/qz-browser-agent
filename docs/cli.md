@@ -62,7 +62,7 @@ npm run build:firefox
 Load `dist/extension-firefox/manifest.json` from `about:debugging#/runtime/this-firefox`. The
 clicks, the reload, and the fact that a temporary add-on is removed when Firefox exits are in
 [Load temporarily in Firefox](commands.md#load-temporarily-in-firefox). The gecko id
-`qz-browser-agent@heleifz.github.io` and the Chrome `key` are compared in
+`qz-browser-agent@yongkaiwu.github.io` and the Chrome `key` are compared in
 [Firefox packaging](firefox-packaging.md#identifiers).
 
 Open the sidebar from the toolbar button, then pair:
@@ -79,7 +79,7 @@ The daemon allows two Origin shapes on extension routes
 ([`services/mcp-bridge/src/server.mjs`](../services/mcp-bridge/src/server.mjs)). A Chrome origin
 remains `chrome-extension://` plus 32 characters from `a` to `p`. A Firefox origin is
 `moz-extension://` plus a lowercase UUID. Firefox stores that UUID for gecko id
-`qz-browser-agent@heleifz.github.io` in the profile pref `extensions.webextensions.uuids`.
+`qz-browser-agent@yongkaiwu.github.io` in the profile pref `extensions.webextensions.uuids`.
 `runtime.id` stays the gecko id. The bridge cannot derive the UUID from the gecko id, so the
 origin check accepts the UUID shape and then the pairing token authenticates the profile.
 The first `/v1/qingzhou/pair` from an allowed origin issues or checks that token. Later poll

@@ -173,7 +173,7 @@ test("a Firefox extension UUID origin can pair, and other origins stay rejected"
     "chrome-extension://bad",
     `chrome-extension://${"q".repeat(32)}`,
     "moz-extension://not-a-uuid",
-    "moz-extension://qz-browser-agent@heleifz.github.io",
+    "moz-extension://qz-browser-agent@yongkaiwu.github.io",
     "moz-extension://12345678-1234-5678-9abc-123456789abc/sidepanel/sidepanel.html",
     "moz-extension://12345678-1234-5678-9ABC-123456789ABC",
     "MOZ-extension://12345678-1234-5678-9abc-123456789abc",

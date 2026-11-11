@@ -60,7 +60,7 @@ the same commands.
 Pass `--output-dir` when that directory must stay separate from another watcher. `dist/extension/`
 stays the Chrome package from `npm run dev` and `npm run build`.
 
-The Firefox add-on id is `qz-browser-agent@heleifz.github.io`. The Chrome `key` is omitted from
+The Firefox add-on id is `qz-browser-agent@yongkaiwu.github.io`. The Chrome `key` is omitted from
 this package. The unpacked Chrome id `ghbaodmonhcgkfeejcpffknlggbjhjgj` comes from the `key` in
 [`src/manifest.json`](../src/manifest.json) and stays on `dist/extension/`. The two ids do not
 share storage or an update channel. `npm run release:firefox` writes

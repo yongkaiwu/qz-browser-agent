@@ -47,7 +47,7 @@ export function resolveFirefoxExecutable() {
   if (process.env.FIREFOX_EXECUTABLE) candidates.push(process.env.FIREFOX_EXECUTABLE);
   const onPath = firefoxOnPath();
   if (onPath) candidates.push(onPath);
-  candidates.push(...playwrightFirefoxCandidates(), "/tmp/ff/firefox/firefox", "/usr/bin/firefox", "/snap/bin/firefox");
+  candidates.push(...systemFirefoxCandidates(), ...playwrightFirefoxCandidates(), "/tmp/ff/firefox/firefox", "/usr/bin/firefox", "/snap/bin/firefox");
   const seen = new Set();
   const errors = [];
   for (const candidate of candidates) {
@@ -87,7 +87,7 @@ function playwrightFirefoxCandidates() {
     try { names = readdirSync(root); } catch { continue; }
     for (const name of names.filter(entry => entry.startsWith("firefox-")).sort((a, b) => b.localeCompare(a, undefined, { numeric: true }))) {
       const directory = join(root, name);
-      found.push(join(directory, "firefox", "firefox"));
+      found.push(join(directory, "firefox", process.platform === "win32" ? "firefox.exe" : "firefox"));
       found.push(join(directory, "firefox", "Firefox.app", "Contents", "MacOS", "firefox"));
     }
   }
@@ -96,9 +96,21 @@ function playwrightFirefoxCandidates() {
 
 function firefoxOnPath() {
   try {
-    const found = execFileSync("which", ["firefox"], { encoding: "utf8", timeout: 5_000 }).trim();
+    const found = execFileSync(process.platform === "win32" ? "where.exe" : "which", ["firefox"], { encoding: "utf8", timeout: 5_000 })
+      .split(/\r?\n/).map(line => line.trim()).find(Boolean);
     return found || "";
   } catch {
     return "";
   }
+}
+
+/** Standard installations need not be on PATH, particularly on Windows and macOS. */
+export function systemFirefoxCandidates(platform = process.platform, env = process.env) {
+  if (platform === "win32") {
+    return [...new Set([env.ProgramW6432, env.ProgramFiles, env["ProgramFiles(x86)"]])]
+      .filter(Boolean).map(directory => join(directory, "Mozilla Firefox", "firefox.exe"))
+      .concat(env.LOCALAPPDATA ? [join(env.LOCALAPPDATA, "Mozilla Firefox", "firefox.exe")] : []);
+  }
+  if (platform === "darwin") return ["/Applications/Firefox.app/Contents/MacOS/firefox"];
+  return [];
 }

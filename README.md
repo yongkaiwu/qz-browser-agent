@@ -1,3 +1,30 @@
+# qz for Firefox
+
+This fork of [alibaba/qz-browser-agent](https://github.com/alibaba/qz-browser-agent) builds on upstream's Firefox compatibility layer. It uses its own add-on ID, `qz-browser-agent@yongkaiwu.github.io`, so Firefox stores its settings and sessions separately from upstream.
+
+## Run in Firefox
+
+Use **Firefox 154 or newer** and **Node.js 24 LTS or newer**:
+
+```sh
+git clone https://github.com/yongkaiwu/qz-browser-agent.git --branch firefox
+cd qz-browser-agent
+npm ci
+npm run build:firefox
+```
+
+1. Open `about:debugging#/runtime/this-firefox` in Firefox.
+2. Choose **Load Temporary Add-on** and select `dist/extension-firefox/manifest.json`.
+3. Click the qz toolbar icon to open the Firefox sidebar, then configure your model in Settings.
+
+Temporary installation lasts until Firefox exits. A normal persistent installation requires Mozilla signing; this fork does not include a signed add-on. Existing upstream sessions stay in the upstream add-on's storage; export and import sessions if needed.
+
+For automatic rebuilding, run `npm run dev:firefox`, then reload the add-on in `about:debugging` after a rebuild. Run `npm run verify:firefox` to check the Firefox package. See [Firefox differences](docs/firefox-differences.md) for platform limits, including synthetic input, raster PDF output, and disabled session automations. Chrome builds remain available through `npm run build`.
+
+The original project documentation follows.
+
+---
+
 <p align="center">
   <img src="src/icons/icon128.png" alt="qz logo" width="80" height="80">
 </p>

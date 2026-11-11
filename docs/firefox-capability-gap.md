@@ -35,7 +35,7 @@ starts the event page from `background.scripts`. This checkout was not loaded th
 | Permissions removed from this package only | `sidePanel`, `debugger`, `offscreen`, and optional `desktopCapture`. Firefox rejects these names. They remain in [`src/manifest.json`](../src/manifest.json). |
 | Data collection | `websiteContent` and `browsingActivity` are required. `locationInfo` and `bookmarksInfo` are optional. `none` is not declared. |
 | Minimum version | `browser_specific_settings.gecko.strict_min_version` is `154.0`, because `sandbox` and `content_security_policy.sandbox` require Firefox 154 (`data_collection_permissions` needs 140). |
-| Add-on id | Provisional `qz-browser-agent@heleifz.github.io`. Confirm it before any signed build. Changing it later changes stored data and the AMO identity. |
+| Add-on id | Provisional `qz-browser-agent@yongkaiwu.github.io`. Confirm it before any signed build. Changing it later changes stored data and the AMO identity. |
 | Chrome `key` | Omitted from the Firefox manifest. The Chrome extension id stays `ghbaodmonhcgkfeejcpffknlggbjhjgj`. |
 | Sandbox declaration | `sandbox.pages` and `content_security_policy.sandbox` are copied through. Firefox documents `content_security_policy.sandbox` from version 154. The runner page is created from the hidden offscreen frame. |
 

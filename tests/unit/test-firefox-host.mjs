@@ -315,7 +315,7 @@ function captureErrors() {
 
 test("initiatorDomains use the moz-extension host on Firefox and stay unchanged on Chrome", async () => {
   const seen = [];
-  const firefox = rulesChrome("qz-browser-agent@heleifz.github.io", "moz-extension://uuid/", seen);
+  const firefox = rulesChrome("qz-browser-agent@yongkaiwu.github.io", "moz-extension://uuid/", seen);
   installInitiatorRewrite(firefox);
   await firefox.declarativeNetRequest.updateSessionRules({ addRules: [{ id: 1, condition: { initiatorDomains: [firefox.runtime.id] } }] });
   assert.deepEqual(seen[0].addRules[0].condition.initiatorDomains, ["uuid"]);
@@ -699,7 +699,7 @@ test("the debugger shim reports frames, isolated contexts, clicks, and network b
   };
   const networkListeners = {};
   const browser = {
-    runtime: { id: "qz-browser-agent@heleifz.github.io", onMessage: { addListener() {} } },
+    runtime: { id: "qz-browser-agent@yongkaiwu.github.io", onMessage: { addListener() {} } },
     tabs: { onRemoved: { addListener(listener) { browser.removed = listener; } }, async get() { return { windowId: 1, url: "https://example.test/" }; } },
     webNavigation: {
       async getAllFrames() { return [{ frameId: 0, parentFrameId: -1, url: "https://example.test/" }, { frameId: 7, parentFrameId: 0, url: "https://other.test/frame" }]; },
@@ -734,7 +734,7 @@ test("the debugger shim reports frames, isolated contexts, clicks, and network b
     assert.equal(attached.source.sessionId, undefined);
     await browser.debugger.sendCommand({ tabId: 3 }, "Runtime.enable");
     const isolated = events.find(event => event.method === "Runtime.executionContextCreated" && event.params.context.auxData.type === "isolated");
-    assert.equal(isolated.params.context.origin, "chrome-extension://qz-browser-agent@heleifz.github.io");
+    assert.equal(isolated.params.context.origin, "chrome-extension://qz-browser-agent@yongkaiwu.github.io");
     const agent = await browser.debugger.sendCommand({ tabId: 3 }, "Runtime.evaluate", { expression: "navigator.userAgent", returnByValue: true });
     assert.match(agent.result.value, /Chrome\/131\.0\.0\.0/);
     const root = await browser.debugger.sendCommand({ tabId: 3 }, "DOM.getDocument", { depth: 0 });
@@ -1558,7 +1558,7 @@ test("isolated content calls run without compiling a function", async () => {
     compiled += 1;
     return nativeFunction(...args);
   };
-  globalThis.chrome = { runtime: { id: "qz-browser-agent@heleifz.github.io" } };
+  globalThis.chrome = { runtime: { id: "qz-browser-agent@yongkaiwu.github.io" } };
   globalThis.__qzInvoke = (node, payload) => payload?.action === 'resolveFindElement' ? document.documentElement : ({
     ok: true,
     action: payload && payload.action,
@@ -1582,7 +1582,7 @@ test("isolated content calls run without compiling a function", async () => {
         contextId: isolatedId,
         returnByValue: true,
       });
-      assert.equal(probe.result.value.extensionId, "qz-browser-agent@heleifz.github.io");
+      assert.equal(probe.result.value.extensionId, "qz-browser-agent@yongkaiwu.github.io");
       assert.equal(probe.result.value.bridge, true);
       assert.equal(compiled, 0, "the isolated probe does not compile a function");
       const blocked = await browser.debugger.sendCommand({ tabId: 8 }, "Runtime.evaluate", {
@@ -1728,7 +1728,7 @@ test("Firefox viewport geometry batches 4000 nodes in one page injection", async
 
 function debuggerBrowser(capture) {
   return {
-    runtime: { id: "qz-browser-agent@heleifz.github.io", onMessage: { addListener() {} } },
+    runtime: { id: "qz-browser-agent@yongkaiwu.github.io", onMessage: { addListener() {} } },
     tabs: {
       onRemoved: { addListener() {} },
       async get() { return { windowId: 1, url: "https://example.test/" }; },

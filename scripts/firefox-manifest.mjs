@@ -6,7 +6,7 @@ import { resolve } from "node:path";
 import { chromeMessageId, decodeChromeMessage, encodeChromeMessage, HISTORICAL_LABELS_MESSAGE_ID } from "../src/shared/i18n/definition.ts";
 import { readTranslationVariants } from "./capability-locales.mjs";
 
-export const FIREFOX_GECKO_ID = "qz-browser-agent@heleifz.github.io";
+export const FIREFOX_GECKO_ID = "qz-browser-agent@yongkaiwu.github.io";
 export const FIREFOX_MIN_VERSION = "154.0";
 export const FIREFOX_BACKGROUND_SCRIPT = "background/firefox-boot.js";
 export const FIREFOX_PANEL_SCRIPT = "sidepanel/firefox-boot.js";

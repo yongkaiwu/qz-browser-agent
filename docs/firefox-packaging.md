@@ -241,7 +241,7 @@ requires: `manifest.json` is a direct child of the archive, and the parent direc
 The bytes are a zip stored with an `.xpi` name. The archive contains the runtime files from the
 Firefox production build, including the license notices the Chrome release packages. It omits
 `.git`, source files, and `META-INF`. Add-ons Manager adds the signature on upload. The manifest
-keeps `browser_specific_settings.gecko`, including id `qz-browser-agent@heleifz.github.io`, and the
+keeps `browser_specific_settings.gecko`, including id `qz-browser-agent@yongkaiwu.github.io`, and the
 Firefox permissions from `firefox-manifest.mjs`. There is no `key`. `version.json` records
 `browser: "firefox"` and `geckoId`. The debug zip stays local, as the Chrome debug zip does. The
 version number is the same `manifest.version` as the Chrome archive of that commit. The stores do
@@ -251,7 +251,7 @@ not share an update channel.
 
 | | Chrome | Firefox |
 | --- | --- | --- |
-| Id | `ghbaodmonhcgkfeejcpffknlggbjhjgj`, from `key` | `qz-browser-agent@heleifz.github.io`, from `browser_specific_settings.gecko.id` |
+| Id | `ghbaodmonhcgkfeejcpffknlggbjhjgj`, from `key` | `qz-browser-agent@yongkaiwu.github.io`, from `browser_specific_settings.gecko.id` |
 | Where it is set | `src/manifest.json` | `FIREFOX_GECKO_ID` in `firefox-manifest.mjs`, applied only to the Firefox output |
 | Minimum browser | Chrome's own | `strict_min_version` `154.0` |
 | Data collection | Chrome Web Store form | `websiteContent` and `browsingActivity` required; `locationInfo` and `bookmarksInfo` optional. `none` is not declared |
@@ -310,6 +310,6 @@ tip when that path is edited. A Firefox-only edit leaves that output byte-identi
 | --- | --- |
 | Signing and Add-ons Manager upload | Maintainer steps. The local `.xpi` is the unsigned file AMO signs |
 | CI success upload of `dist/extension-firefox/` | The job already fails the build when Firefox tests fail. A success artifact is extra weight on the workflow |
-| Gecko id confirmation | `qz-browser-agent@heleifz.github.io` stays the id until the first signed upload |
+| Gecko id confirmation | `qz-browser-agent@yongkaiwu.github.io` stays the id until the first signed upload |
 | `productText` rename | A rename rewrites shared modules and moves the Chrome package hash |
 | Data-collection lists | They stay as declared. `none` stays undeclared |
